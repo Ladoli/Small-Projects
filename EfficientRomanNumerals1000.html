@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<!-- Creating a visual representation of the results area -->
+		<style>
+		#result {
+		border: 5px inset purple;
+		width: 300px;
+		height: 100px;
+		color: silver;
+		padding: 10px;
+		font-size: 20px;
+		}
+		</style>
+		<!-- End of CSS for results area -->
+		<script>
+			function romanization()
+			{
+				document.getElementById("result").innerHTML = ""; 
+				var value1 = document.getElementById("v1").value;
+				value1 = Number(value1);
+				if (value1<1||value1>1000) // Confirms user input is within allowable range for the program to properly function and gives a warning otherwise
+				{
+					document.getElementById("result").innerHTML = "WARNING: NUMBER NOT IN RANGE. MIN=1, MAX=1000";	
+				}
+				else
+				{
+					var roman = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"]; // Array for Roman numerals
+					var num = [1000,900,500,400,100,90,50,40,10,9,5,4,1]; 
+					/* Array for values matching Roman numerals; equivalent indexes between roman and num have equivalent values, they are sorted in
+					descending order. This is needed for the loops to come
+					*/
+					document.getElementById("result").innerHTML = '';
+					index = 0;
+					while (value1>0) // This loop aims to bring the value of value1 to 0, at which point value1 is fully represented by Roman Numerals
+					{			
+						while (value1-num[index]>=0) /* Starting with the biggest value of 1,000, this loop checks to make sure the Roman Numeral can be
+						subtracted from value1 without hitting negative numbers. If yes, it proceeds to do so while creating the representation though
+						adding roman[index] to results.
+						*/
+						{
+							document.getElementById("result").innerHTML += roman[index];
+							value1 -= num[index];
+						}
+					index++; //Once the current value cannot be subtracted from value1 without incurring negative results, we move on to the next value
+					}
+				}				
+			}
+		</script>
+	</head>
+	<body>
+		
+		<label> Number: <input type=number min=1 max=1000 id="v1"></label> <!-- Label and user input box for number -->
+		<button onclick="romanization();">Romanize</button> <!-- Button for initiating romanization function -->
+		<br><br><br>
+		<div id="result">
+		
+		</div>
+		<br>This program is the result of trying to create a shorter and more efficient code to convert numbers to Roman Numbers. Use of arays was the solution I came up with. <br><br>
+
+	</body>
+</html>
+	
