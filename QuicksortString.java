@@ -22,12 +22,9 @@ public class QuicksortString {
 		{
 			return; 
 		}
-
-		
 	     //recursion++;
-		 System.out.println("New recursion with element " +left + " and " + right);	
-	     int front = left - 1;
-	     int last = right - 1;
+		 //System.out.println("New recursion with element " +left + " and " + right);	
+	     int front = left - 1, last = right - 1;
 	     String pivot = array[last];
 	     boolean needsWork = true;
 	     while (needsWork)
@@ -40,13 +37,7 @@ public class QuicksortString {
 	         }
 	         else if(front != (right-1))
 	         {
-	        	 //Cannot use swap because of pivot
-	        	 System.out.println("Swapping " + array[front] +" with pivot " +pivot);
-	             String temp = array[front];
-	             array[front] = pivot;
-	             //Do not change pivot to (right-1)
-	             array[right - 1] = temp;
-	             System.out.println(Arrays.toString(array));	
+	        	swap(front, right-1);	
 	             needsWork = false;   
 	         }
 	         else
@@ -54,7 +45,6 @@ public class QuicksortString {
 	        	 needsWork = false;
 	         }
 	     }
-	     
 	     quickSorter(left, front);
 	     quickSorter(front + 1, right);
 	}
