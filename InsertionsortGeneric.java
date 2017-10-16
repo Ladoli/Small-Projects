@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class InsertionsortGeneric {
 
 	public static void main(String[] args) {		
+		 Comparable[] array = {32,82,43,11,99,56,25,61,78};
 		 ArrayList<Comparable> initialList = new ArrayList<Comparable>();
 
 		 for (Comparable d : array)
