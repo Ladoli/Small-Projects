@@ -4,97 +4,70 @@ public class Quicksort {
 	
 	static int[] array = {32,82,43,11,99,56,25,61,78};
 	static int arraySize = array.length;
-	static int recursion = 0;
+	//static int recursion = 0;
+	//To check recursion efficiency
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	System.out.println(Arrays.toString(array));	 
-	quickSorter(0, arraySize-1);  
+	quickSorter(0, arraySize);
 	System.out.println(Arrays.toString(array));	
-	System.out.println(recursion);	
-	//Is... is this amount of recursion normal?!
-
-		
-		
-		
-		
-				
+	//System.out.println(recursion);		
 	}
 
 	
 	public static void quickSorter(int left, int right)
 	{
-		recursion++;
 		
-		if (array == null || array.length == 0) 
+		if (array == null || array.length == 0 || left >= right-1 || left == right ) 
 		{
 			return; 
 		}
 
 		
-		if(right - left <= 0)
-		{
-			return;
-		}
-		
-		else {
-			int leftPartitioner = left;
-			int rightPartitioner = right;
-			int pivot = array[left+(right-left)];
-			while(leftPartitioner <= rightPartitioner)
-			{
-				while(array[leftPartitioner] < pivot)
-				{
-					leftPartitioner++;
-				}
-				
-				while(array[rightPartitioner] < pivot)
-				{
-					rightPartitioner++;
-				}
-				
-				if(leftPartitioner <= rightPartitioner)
-				{
-					swap(leftPartitioner, rightPartitioner);
-					leftPartitioner++;
-					rightPartitioner--;
-				}
-				
-				if(left<rightPartitioner)
-				{
-					System.out.println("Quick sorting " + array[left] + ", " + array[rightPartitioner]);
-					quickSorter(left,rightPartitioner);
-				}
-				
-				if(leftPartitioner<right)
-				{
-					System.out.println("Quick sorting " + array[leftPartitioner] + ", " + array[right]);
-					quickSorter(leftPartitioner, right);
-				}
-			}
-			
-		}
-	
-		
-		
-		
+	     //recursion++;
+		 System.out.println("New recursion with element " +left + " and " + right);	
+	     int front = left - 1;
+	     int last = right - 1;
+	     int pivot = array[last];
+	     boolean needsWork = true;
+	     while (needsWork)
+	     {
+	         while (array[++front] < pivot);
+	         while (array[--last] > pivot && last > left);
+	         if (front < last)
+	         {
+	             swap(front,last);
+	         }
+	         else if(front != (right-1))
+	         {
+	        	 //Cannot use swap because of pivot
+	        	 System.out.println("Swapping " + array[front] +" with pivot " +pivot);
+	             int temp = array[front];
+	             array[front] = pivot;
+	             //Do not change pivot to (right-1)
+	             array[right - 1] = temp;
+	             System.out.println(Arrays.toString(array));	
+	             needsWork = false;   
+	         }
+	         else
+	         {
+	        	 needsWork = false;
+	         }
+	     }
+	     
+	     quickSorter(left, front);
+	     quickSorter(front + 1, right);
 	}
 	
 	 
 	 public static void swap(int a, int b)
 	 {
-		 if(a==b)
-		 {
-			 
-		 }
-		 else
-		 {
 			 System.out.println("Swapping " + array[a] +" and " +array[b]);
 			 int temp = array[a];
 			 array[a] = array[b];
 			 array[b] = temp;
 			 System.out.println(Arrays.toString(array));	
-		 }
+
 	 }
 	 
 	 
