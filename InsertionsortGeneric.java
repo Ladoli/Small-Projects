@@ -3,10 +3,6 @@ import java.util.Arrays;
 public class InsertionsortGeneric {
 
 	public static void main(String[] args) {		
-		 //int[] array = {32,82,43,11,99,56,25,61,78};
-		 //Comparable[] array = {"32","82","43","11","99","56","25","61","78"};
-		 Comparable[] array = {32,82,43,11,99,56,25,61,78};
-		 //ArrayList<Integer> initialList = new ArrayList<Integer>();
 		 ArrayList<Comparable> initialList = new ArrayList<Comparable>();
 
 		 for (Comparable d : array)
@@ -52,10 +48,6 @@ public class InsertionsortGeneric {
 			 System.out.print(d + " ");	 
 		 System.out.print("\r\n");
 	 }
-	
-	public static <T extends Comparable<T>> int compareTo(T a, T b)
-	 {
-		 return a.compareTo(b);
-	 }
+
 
 }
